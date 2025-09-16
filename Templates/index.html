@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Criador de Personagem de RPG</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        form { display: flex; flex-direction: column; gap: 15px; }
+        label { font-weight: bold; }
+        input, select, button { padding: 10px; font-size: 1rem; }
+        button { cursor: pointer; background-color: #007BFF; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Crie seu Personagem</h1>
+    <form action="/" method="post">
+        <label for="nome">Nome do Personagem:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="raca">Escolha sua Raça:</label>
+        <select id="raca" name="raca">
+            {% for raca in racas %}
+                <option value="{{ raca }}">{{ raca }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="classe">Escolha sua Classe:</label>
+        <select id="classe" name="classe">
+            {% for classe in classes %}
+                <option value="{{ classe }}">{{ classe }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Método de Geração de Atributos:</label>
+        <div>
+            <input type="radio" id="classico" name="metodo_atributos" value="classico" checked>
+            <label for="classico">Clássico (Soma de 3d6)</label>
+        </div>
+        <div>
+            <input type="radio" id="heroico" name="metodo_atributos" value="heroico">
+            <label for="heroico">Heróico (Melhores 3 de 4d6)</label>
+        </div>
+        <div>
+            <input type="radio" id="aventureiro" name="metodo_atributos" value="aventureiro">
+            <label for="aventureiro">Aventureiro (Soma de 2d6 + 6)</label>
+        </div>
+
+        <button type="submit">Gerar Personagem</button>
+    </form>
+</body>
+</html>

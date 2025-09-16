@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha de {{ personagem.nome }}</title>
+    <style>
+        body { font-family: sans-serif; max-width: 700px; margin: auto; padding: 20px; }
+        .ficha { border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+        h1, h2 { text-align: center; }
+        .info { margin-bottom: 20px; }
+        .atributos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; }
+        .atributo { border: 1px solid #eee; padding: 10px; border-radius: 5px; }
+        .atributo strong { font-size: 1.2rem; }
+        ul { list-style-type: none; padding: 0; }
+        a { display: block; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="ficha">
+        <h1>{{ personagem.nome }}</h1>
+        <div class="info">
+            <h2>{{ personagem.raca }} {{ personagem.classe }}</h2>
+        </div>
+
+        <h2>Atributos</h2>
+        <div class="atributos-grid">
+            {% for nome, valor in personagem.atributos.items() %}
+            <div class="atributo">
+                <small>{{ nome }}</small><br>
+                <strong>{{ valor }}</strong>
+                ({{ personagem.modificadores[nome] }})
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2>Habilidades de Classe</h2>
+        <ul>
+            {% for habilidade in personagem.habilidades %}
+                <li>- {{ habilidade }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="/">Criar outro personagem</a>
+</body>
+</html>
